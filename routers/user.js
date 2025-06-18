@@ -25,4 +25,13 @@ router.put("/updateUser", authorization, async (req, res) => {
   }
 });
 
+router.get("/getUser", async (req, res) => {
+  try {
+    const user = await User.find();
+    sendResponse(res, 200, user, false, "Users fetched successfully");
+  } catch (err) {
+    sendResponse(res, 500, null, true, err.message);
+  }
+});
+
 export default router;
